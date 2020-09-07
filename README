@@ -10,61 +10,70 @@ Copyright (c) fG!, 2011, 2012, 2013, 2014 - reverser@put.as - http://reverse.put
 All rights reserved.
 
 Introduction
--------------------------------------------------------------------------------
-A kernel module for Intel Mac OS X that will provide you with some
-anti anti-debug protection and other features.
+-------------------------------------------------- -----------------------------
+Un module de noyau pour Intel Mac OS X qui vous fournira quelques
+protection anti-débogage et autres fonctionnalités.
 
-This module will allow you to debug programs which use these tricks without
-need to patch them (no need to patch lots of anti-debug calls and maybe 
-checksum code).
-Compatible with all OS X versions since Snow Leopard (older probably supported!).
-Mavericks introduces kernel extension code signing but this still works
-if you load it manually.
+Ce module vous permettra de déboguer les programmes qui utilisent ces astuces sans
+besoin de les patcher (pas besoin de patcher beaucoup d'appels anti-débogage et 
+peut-être code de somme de contrôle).
 
-Features can be enabled or disabled using the control program. By default
-everything is disabled. This util requires root privileges to run. If you
-want to run it as normal user you can remove CTL_FLAG_PRIVILEGED from
-kernel_control.c source file.
+Compatible avec toutes les versions d'OS X depuis Snow Leopard (plus anciennes 
+probablement prises en charge!).
 
-This code uses diStorm as its disassembler. 
-Due to licensing differences its files are not included. 
-You can download diStorm from:
-http://code.google.com/p/distorm/ and include the missing files.
-The only required change is to define SUPPORT_64BIT_OFFSET. You can do it
-either at diStorm's config.h file or at Xcode project settings.
+Mavericks introduit la signature du code d'extension du noyau, mais cela fonctionne
+toujours si vous le chargez manuellement.
 
-Included are small test programs to test the anti-debug tricks, and other 
-features.
+Les fonctionnalités peuvent être activées ou désactivées à l'aide du programme de 
+contrôle. 
 
-The weird name is based on a big black cat named Onyx who is always hiding and 
-running from me :).
-"I'm gonna hug you and kiss you and love you forever (and never use you up)"
+Par défaut tout est désactivé. Cet utilitaire nécessite des privilèges root pour 
+s'exécuter. Si vous voulez l'exécuter en tant qu'utilisateur normal, vous pouvez 
+supprimer CTL_FLAG_PRIVILEGED de fichier source kernel_control.c.
+
+Ce code utilise diStorm comme désassembleur.
+
+En raison des différences de licence, ses fichiers ne sont pas inclus.
+
+Vous pouvez télécharger diStorm depuis: http://code.google.com/p/distorm/ 
+et incluez les fichiers manquants.
+
+La seule modification requise est de définir SUPPORT_64BIT_OFFSET. Tu peux le faire
+soit dans le fichier config.h de diStorm ou dans les paramètres du projet Xcode.
+
+Inclus sont de petits programmes de test pour tester les astuces anti-débogage, 
+et d'autres fonctionnalités.
+
+Le nom étrange est inspiré de :
+Un gros chat noir nommé: "Onyx", 
+qui se cache toujours et qui me fuits.
+ -- "Je vais vous serrer dans mes bras et vous embrasser,
+     p.s.: Je vous aimer pour toujours ne vous épuiser jamais !"
 Elmyra Fudd.
 
-I hope it's useful for you. It is for me.
-If you find/know any other gdb anti-debug tricks, please drop me an email with 
-some details so I can add them to the module.
+J'espère que cela vous sera utile. 
+C'est pour moi. Si vous trouvez / connaissez d'autres astuces anti-débogage gdb, 
+envoyez-moi un e-mail avec quelques détails pour que je puisse les ajouter au module.
 
-Have fun.
-fG!
+S'amuser. fG!
 
 Installation
--------------------------------------------------------------------------------
-Copy onyx-the-black-cat.kext to /System/Library/Extensions
-(sudo cp -rf onyx-the-black-cat.kext /System/Library/Extensions)
+-------------------------------------------------- -----------------------------
+Copiez onyx-the-black-cat.kext dans / System / Library / Extensions
+(sudo cp -rf onyx-the-black-cat.kext / System / Library / Extensions)
 
-and then load the module with kextload
+puis chargez le module avec kextload
 (sudo kextload /System/Library/Extensions/onyx-the-black-cat.kext)
 
-Unload module with kextunload
+Décharger le module avec kextunload
 (sudo kextunload /System/Library/Extensions/onyx-the-black-cat.kext)
 
-Use the control program to enable/disable features. Everything is disabled by
-default.
+Utilisez le programme de contrôle pour "activer" / "désactiver" les fonctionnalités.
+Par défaut: Tout est désactivé.
 
-You can check dmesg or /var/log/system.log for debug messages and anti-debug
- hits.
+Vous pouvez vérifier dmesg ou "/var/log/system.log" pour les messages de débogage 
+et l'anti-débogage les coups.
 
-Known Problems
--------------------------------------------------------------------------------
-Still some ugly code :-)
+Problèmes connus
+-------------------------------------------------- -----------------------------
+Encore du code laid :-)
